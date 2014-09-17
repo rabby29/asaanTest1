@@ -76,7 +76,7 @@
         } else {
             if (user.isNew) {
                 NSLog(@"User with facebook signed up and logged in!");
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error"
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
                                                                 message:@"User with facebook signed up and logged in!"
                                                                delegate:nil
                                                       cancelButtonTitle:nil
@@ -85,7 +85,7 @@
                 
             } else {
                 NSLog(@"User with facebook logged in!");
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error"
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
                                                                 message:@"User with facebook logged in!"
                                                                delegate:nil
                                                       cancelButtonTitle:nil
