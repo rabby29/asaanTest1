@@ -34,11 +34,18 @@
     [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
         if (!user) {
             NSLog(@"Uh oh. The user cancelled the Twitter login.");
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Success" message:@"Uh oh. The user cancelled the Twitter login." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+
             return;
         } else if (user.isNew) {
             NSLog(@"User signed up and logged in with Twitter!");
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Success" message:@"User signed up and logged in with Twitter!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         } else {
             NSLog(@"User logged in with Twitter!");
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Success" message:@"User logged in with Twitter!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         }     
     }];
 }
@@ -69,8 +76,21 @@
         } else {
             if (user.isNew) {
                 NSLog(@"User with facebook signed up and logged in!");
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error"
+                                                                message:@"User with facebook signed up and logged in!"
+                                                               delegate:nil
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@"Dismiss", nil];
+                [alert show];
+                
             } else {
                 NSLog(@"User with facebook logged in!");
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error"
+                                                                message:@"User with facebook logged in!"
+                                                               delegate:nil
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@"Dismiss", nil];
+                [alert show];
             }
             
         }
