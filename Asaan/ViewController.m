@@ -7,8 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <ParseFacebookUtils/PFFacebookUtils.h>
-#import <Parse/Parse.h>
+
 
 
 @interface ViewController ()
@@ -21,7 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+   
+    [PFUser logOut];
 
 }
 
@@ -31,6 +31,7 @@
 }
 
 -(IBAction)twiter:(id)sender{
+    
     [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
         if (!user) {
             NSLog(@"Uh oh. The user cancelled the Twitter login.");
@@ -48,6 +49,36 @@
             [alert show];
         }     
     }];
+}
+
+-(IBAction)login:(id)sender{
+    
+    NSLog(@" log%@",[PFUser currentUser]);
+    
+    if (![PFUser currentUser]) { // No user logged in
+        // Create the log in view controller
+        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        [logInViewController setDelegate:self]; // Set ourselves as the delegate
+        
+        // Create the sign up view controller
+        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        
+        // Assign our sign up controller to be displayed from the login controller
+        [logInViewController setSignUpController:signUpViewController];
+        
+        // Present the log in view controller
+        [self presentViewController:logInViewController animated:YES completion:NULL];
+    }
+}
+
+
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
+    NSLog(@"%@",user);
+}
+
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user{
+    NSLog(@"%@",user);
 }
 
 - (IBAction)loginButtonTouchHandler:(id)sender  {
